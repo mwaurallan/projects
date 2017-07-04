@@ -91,6 +91,7 @@ echo "<div class='alert alert-danger'>Unable to add member.</div>";
     	 <tr>
             <td>Overpay</td>
             <td><input type='text' name='s_overpay' value='' class='form-control' /></td>
+            <td>text</td>
         </tr>
         s_t_id
         <tr>
