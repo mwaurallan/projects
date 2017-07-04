@@ -45,6 +45,8 @@ $s_amount=$_POST['s_amount'];
 $s_balance=$_POST['s_balance'];
 $s_overpay=$_POST['s_overpay'];
 $s_t_id=$_POST['s_t_id'];
+$s_fine=$_POST['s_fine'];
+
 $amnt=700;
  if($s_amount<700){
 
@@ -55,7 +57,7 @@ $amnt=700;
 
  	# code...
  }
-$sql=$insertdata->insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id);
+$sql=$insertdata->insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id,$s_fine);
 //$sql=$insertdata->insert($fname,$email,$contact,$gender,$education,$adrss);
 
 if($sql)
@@ -138,4 +140,3 @@ echo "<div class='alert alert-danger'>Unable to add member.</div>";
     </table>
 </form>
 
-//mwaura

@@ -12,10 +12,10 @@ class DB_con
 		$conn = mysql_connect(DB_SERVER,DB_USER,DB_PASS) or die('localhost connection problem'.mysql_error());
 		mysql_select_db(DB_NAME, $conn);
 	}
-	public function insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id)
+	public function insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id,$s_fine)
 	{
-	$ret=mysql_query("insert into savings(s_mem_id,s_date,s_amount,s_balance,s_overpay,s_t_id) 
-		values('$s_mem_id','$s_date','$s_amount','$s_balance','$s_overpay','$s_t_id')");
+	$ret=mysql_query("insert into savings(s_mem_id,s_date,s_amount,s_balance,s_overpay,s_t_id,s_fine) 
+		values('$s_mem_id','$s_date','$s_amount','$s_balance','$s_overpay','$s_t_id','$s_fine')");
 	return $ret;
 	}
 	public function select(){
