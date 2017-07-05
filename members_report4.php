@@ -23,8 +23,14 @@ if(isset($_POST['send'])){
 //$name2="PATSON WANJIRI NDEMI";
 
 $name3=$_POST['m_name'];
+
+$sqlt=mysql_query("SELECT * FROM members WHERE m_name='".$name3."'");
+//SELECT * FROM members WHERE m_name='PATSON WANJIRU NDEMI'
+//PATSON WANJIRU NDEMI
+$row7=mysql_fetch_array($sqlt);
+$tel=$row7['m_tel'];
 //echo $name2;
-//include_once("footer.php");
+//include_once("footer.php
 class PDF extends FPDF
 {
 // Page header
@@ -70,13 +76,16 @@ $dar=" Members Satement";
 $namel="Member Name";
 $named=$_POST['m_name'];
 $name3=$_POST['m_name'];
+$name8=$tel;
+$dar15=" Telephone";
 $pdf->Cell(40,10,"$dar");
 
 $pdf->Ln();
 
 $pdf->Cell(55,10,"$namel",'B','L');
 $pdf->Cell(55,10,"$named",'B','L');
-
+$pdf->Cell(55,10,"$dar15",'B','L');
+$pdf->Cell(55,10,"$name8",'B','L');
 $pdf->Ln();
 $pdf->Cell(10,10,'NO',1);
 $pdf->Cell(18,10,'M_NO',1);
@@ -106,8 +115,21 @@ $qc3=mysql_query("SELECT SUM(s_balance) as amtb FROM mem_savings4 WHERE m_name='
 $rm3=mysql_fetch_array($qc3);
 $TotalAmt3=$rm3['amtb'];
 $TotalAmt4=number_format($TotalAmt3,2);
-$dar2="Total";
+$dar2="Expected Shares";
 $dar3="Arreas";
+
+$qc4=mysql_query("SELECT SUM(s_contrib) as amtc FROM mem_savings4 WHERE m_name='".$name3."'");
+$rm4=mysql_fetch_array($qc4);
+$TotalAmt5=$rm4['amtc'];
+$TotalAmt6=number_format($TotalAmt5,2);
+$dar4="Total Contribution";
+
+$qc5=mysql_query("SELECT SUM(s_fine) as amtf FROM mem_savings4 WHERE m_name='".$name3."'");
+$rm5=mysql_fetch_array($qc5);
+$TotalAmt7=$rm5['amtf'];
+$TotalAmt8=number_format($TotalAmt7,2);
+$dar6="Total Fines";
+//$dar3="Arreas";
 //$query=mysql_query("SELECT * FROM members_reg WHERE BlockNo='".$block."' ORDER BY Connection_No ASC");
  //WHERE Connection_No='".$conn."' ORDER BY Arr_ID DESC
 
@@ -147,12 +169,29 @@ $pdf->Ln();
 $x++;
 }
 $pdf->Ln();
-$pdf->Cell(30,6,"",0,'C');
+$pdf->Cell(80,6,"",0,'C');
 $pdf->SetFont('Times','',18);
-$pdf->Cell(28,6,"$dar2",0,'C');
-$pdf->Cell(30,6,"$TotalAmt2",1);
-//$pdf->Cell(40,6,"$dar3",0,1);
-$pdf->Cell(20,6,"$TotalAmt4",1);
+//$pdf->Cell(28,6,"$dar2",0,'C');
+//$pdf->Cell(30,6,"$TotalAmt2",1);
+//$pdf->Cell(10,6,"$dar3",0,1);
+//$pdf->Cell(20,6,"$TotalAmt4",1);
+$pdf->Cell(55,10,"$dar2",'B','L');
+$pdf->Cell(55,10,"$TotalAmt2",'B','L');
+
+$pdf->Ln();
+$pdf->Cell(80,6,"",0,'C');
+$pdf->Cell(55,10,"$dar4",'B','L');
+$pdf->Cell(55,10,"$TotalAmt6",'B','L');
+
+$pdf->Ln();
+$pdf->Cell(80,6,"",0,'C');
+$pdf->Cell(55,10,"$dar6",'B','L');
+$pdf->Cell(55,10,"$TotalAmt7",'B','L');
+
+$pdf->Ln();
+$pdf->Cell(80,6,"",0,'C');
+$pdf->Cell(55,10,"$dar3",'B','L');
+$pdf->Cell(55,10,"$TotalAmt4",'B','L');
 //$pdf->Cell(170,6,"$total2",0,1,'R');
 //$this->Cell(30,8,'KAWA SELF HELP GROUP',0,1,'C');
 
