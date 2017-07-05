@@ -14,6 +14,7 @@ $mem_id2=$_GET['id'];
 include_once("objects/functions.php");
 include_once("objects/fund.php");
 include_once("config/database.php");
+include_once("config/connect.php");
 
 $insertdata=new DB_con();
 
@@ -42,22 +43,53 @@ echo "data updated";
 $s_mem_id=$_POST['s_mem_id'];
 $s_date=$_POST['s_date'];
 $s_amount=$_POST['s_amount'];
+$s_contrib=$_POST['s_contrib'];
 $s_balance=$_POST['s_balance'];
 $s_overpay=$_POST['s_overpay'];
 $s_t_id=$_POST['s_t_id'];
 $s_fine=$_POST['s_fine'];
 
+
 $amnt=700;
- if($s_amount<700){
-
- 	$arreas=$s_amount-700;
- 	$s_balance=$arreas;
- }elseif ($s_amount>700) {
 
 
- 	# code...
+//$sql=$insertdata->insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id,$s_fine);
+
+ $fshares=700;
+ //$fines=0;
+ $s_balance=0;
+
+ if($s_contrib == $fshares){
+
+   $bald= $s_balance+$s_fine;
+   $s_balance=$bald;
+
+ }else if($s_contrib < $fshares){
+
+        $bald=$fshares-$s_contrib;
+
+        $bald=$bald+$s_fine;
+
+        $s_balance=$bald;
+
+
+ }else if($s_contrib > $fshares){
+
+
+          $bald=$fshares-$s_contrib;
+
+            $bald=$bald+$s_fine;
+
+            $s_balance=$bald;
+
+ }else{
+
+    $s_balance=0;
  }
-$sql=$insertdata->insert($s_mem_id,$s_date,$s_amount,$s_balance,$s_overpay,$s_t_id,$s_fine);
+$sql=mysql_query("insert into savings(s_mem_id,s_date,s_amount,s_contrib,s_balance,s_overpay,s_t_id,s_fine) 
+        values('$s_mem_id','$s_date','$s_amount',$s_contrib,'$s_balance','$s_overpay','$s_t_id','$s_fine')");
+    
+
 //$sql=$insertdata->insert($fname,$email,$contact,$gender,$education,$adrss);
 
 if($sql)
@@ -66,7 +98,7 @@ if($sql)
 }
 else
 {
-echo "<div class='alert alert-danger'>Unable to add member.</div>";
+echo "<div class='alert alert-danger'>Unable to add member</div>".mysql_error();
 }
 }
  ?>
@@ -87,15 +119,28 @@ echo "<div class='alert alert-danger'>Unable to add member.</div>";
         </tr>
            <tr>
             <td>Amount</td>
-            <td><input type='text' name='s_amount' value='700' class='form-control' /></td>
-            <td>Balance</td>
-            <td><input type='text' name='s_balance' value='0' class='form-control' /></td>
+            <td><input type='text' name='s_amount' value='700'  readonly class='form-control' /></td>
+            <td></td>
+            
         </tr>
- 		
+ 	
+        <tr>
+            <td>Contribution</td>
+
+            <td><input type='text' name='s_contrib' value='0' class='form-control' /></td>
+            
+        </tr>
+
+        <tr>
+            <td>Balance</td>
+            
+            <td><input type='text' name='s_balance' value='0' class='form-control' /></td>
+            
+        </tr>
     	 <tr>
             <td>Overpay</td>
             <td><input type='text' name='s_overpay' value='0' class='form-control' /></td>
-            <td>text</td>
+            
         </tr>
         s_t_id
         <tr>

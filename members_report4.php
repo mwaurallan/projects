@@ -83,21 +83,31 @@ $pdf->Cell(18,10,'M_NO',1);
 //$pdf->Cell(18,10,'M_NO',1);
 //$pdf->Cell(55,10,'NAME',1);
 $pdf->Cell(55,10,'DATE',1);
-$pdf->Cell(55,10,'SHARES',1);
-
+$pdf->Cell(30,10,'SHARES',1);
+$pdf->Cell(30,10,'CONTR',1);
+$pdf->Cell(30,10,'FINES',1);
+$pdf->Cell(20,10,'BALAN',1);
 $pdf->Ln();
 //$query=mysql_query("SELECT * FROM blocks ORDER BY Block_ID ASC");
 //$sql=$insertdata->selects();
 //$sql=mysql_query("SELECT * FROM mem_savings WHERE m_name='PATSON WANJIRI NDEMI'");
 
-$sql=mysql_query("SELECT * FROM mem_savings WHERE m_name='".$name3."' ");
+//$sql=mysql_query("SELECT * FROM mem_savings WHERE m_name='".$name3."' ");
+$sql=mysql_query("SELECT * FROM mem_savings4 WHERE m_name='".$name3."' ");
+
 //ORDER BY m_name ASC
 //'".$name3."' 
-$qc2=mysql_query("SELECT SUM(s_amount) as amt FROM mem_savings WHERE m_name='".$name3."'");
+$qc2=mysql_query("SELECT SUM(s_amount) as amt FROM mem_savings4 WHERE m_name='".$name3."'");
 $rm2=mysql_fetch_array($qc2);
 $TotalAmt=$rm2['amt'];
 $TotalAmt2=number_format($TotalAmt,2);
+
+$qc3=mysql_query("SELECT SUM(s_balance) as amtb FROM mem_savings4 WHERE m_name='".$name3."'");
+$rm3=mysql_fetch_array($qc3);
+$TotalAmt3=$rm3['amtb'];
+$TotalAmt4=number_format($TotalAmt3,2);
 $dar2="Total";
+$dar3="Arreas";
 //$query=mysql_query("SELECT * FROM members_reg WHERE BlockNo='".$block."' ORDER BY Connection_No ASC");
  //WHERE Connection_No='".$conn."' ORDER BY Arr_ID DESC
 
@@ -117,13 +127,19 @@ $m_no= $row['m_no'];
 $m_name= $row['m_name'];
 $m_date= $row['s_date'];
 $s_amount= $row['s_amount'];
+$s_contrib= $row['s_contrib'];
+$s_fine= $row['s_fine'];
+$s_balance= $row['s_balance'];
 //$s_amount2=SUM($row2['s_amount']);
 $pdf->SetFont('Times','',10);
 $pdf->Cell(10,6,"$x",1);
 $pdf->Cell(18,6,"$m_no",1);
 //$pdf->Cell(55,6,"$m_name",1);
 $pdf->Cell(55,6,"$m_date",1);
-$pdf->Cell(55,6,"$s_amount",1);
+$pdf->Cell(30,6,"$s_amount",1);
+$pdf->Cell(30,6,"$s_contrib",1);
+$pdf->Cell(30,6,"$s_fine",1);
+$pdf->Cell(20,6,"$s_balance",1);
 
 
 $pdf->Ln();
@@ -131,11 +147,12 @@ $pdf->Ln();
 $x++;
 }
 $pdf->Ln();
-$pdf->Cell(55,6,"",0,'C');
+$pdf->Cell(30,6,"",0,'C');
 $pdf->SetFont('Times','',18);
 $pdf->Cell(28,6,"$dar2",0,'C');
-$pdf->Cell(55,6,"$TotalAmt2",1);
-
+$pdf->Cell(30,6,"$TotalAmt2",1);
+//$pdf->Cell(40,6,"$dar3",0,1);
+$pdf->Cell(20,6,"$TotalAmt4",1);
 //$pdf->Cell(170,6,"$total2",0,1,'R');
 //$this->Cell(30,8,'KAWA SELF HELP GROUP',0,1,'C');
 
