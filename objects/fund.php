@@ -15,7 +15,7 @@
     }
  
     // used by select drop-down list
-    function read(){
+    function read2(){
         //select all data
         $query = "SELECT
                     t_id,t_name

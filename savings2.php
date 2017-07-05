@@ -46,7 +46,7 @@ $s_amount=$_POST['s_amount'];
 $s_contrib=$_POST['s_contrib'];
 $s_balance=$_POST['s_balance'];
 $s_overpay=$_POST['s_overpay'];
-$s_t_id=$_POST['s_t_id'];
+//$s_t_id=$_POST['s_t_id'];
 $s_fine=$_POST['s_fine'];
 
 
@@ -86,9 +86,25 @@ $amnt=700;
 
     $s_balance=0;
  }
-$sql=mysql_query("insert into savings(s_mem_id,s_date,s_amount,s_contrib,s_balance,s_overpay,s_t_id,s_fine) 
-        values('$s_mem_id','$s_date','$s_amount',$s_contrib,'$s_balance','$s_overpay','$s_t_id','$s_fine')");
+$sql=mysql_query("insert into savings(s_mem_id,s_date,s_amount,s_contrib,s_balance,s_overpay,s_fine) 
+        values('$s_mem_id','$s_date','$s_amount',$s_contrib,'$s_balance','$s_overpay','$s_fine')");
+
+$sql5=mysql_query("SELECT * from t_fund ");
+
+$row6=mysql_fetch_assoc($sql5);
+
+    $fund=$row6['t_amount'];
+
+    $fund2=$fund+$s_contrib;
     
+    $sql7=mysql_query("UPDATE t_fund SET t_amount='$fund2' ");
+    if($sql7){
+
+        echo "update success";
+    }else{
+        mysql_error();
+    }
+    //$sql = "UPDATE MyGuests SET lastname='Doe' WHERE i$amntfnd=2";
 
 //$sql=$insertdata->insert($fname,$email,$contact,$gender,$education,$adrss);
 
@@ -142,33 +158,9 @@ echo "<div class='alert alert-danger'>Unable to add member</div>".mysql_error();
             <td><input type='text' name='s_overpay' value='0' class='form-control' /></td>
             
         </tr>
-        s_t_id
-        <tr>
-            <td>Trust_Fund</td>
-            <td>
-                <!-- categories select drop-down will be here -->
-    			<?php
-
-
-            	//echo 'Categories are here';
-            	// read the product categories from the database
-				$stmt =$fund->read();
- 
-				// put them in a select drop-down
-				echo "<select class='form-control' name='s_t_id'>";
-   				 echo "<option>Select Fund...</option>";
- 
-   				 while ($row_fund = $stmt->fetch(PDO::FETCH_ASSOC)){
-      				  extract($row_fund);
-       			 echo "<option value='{$t_id}'>{$t_name}</option>";
-    			}
- 
-				echo "</select>";
-
-            ?>
-
-            </td>
-        </tr>
+      
+       
+      
         <tr>
 
                     <td>Fines</td>

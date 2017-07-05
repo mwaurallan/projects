@@ -74,7 +74,7 @@ include_once("footer.php");
 				echo "<select class='form-control' name='s_t_id'>";
    				 echo "<option>Select Fund...</option>";
  
-   				 while ($row_fund = $stmt->fetch(PDO::FETCH_ASSOC)){
+   				 while ($row_fund = $stmt->fetch(PDO::FETCH_ASSO){
       				  extract($row_fund);
        			 echo "<option value='{$t_id}'>{$t_name}</option>";
     			}
