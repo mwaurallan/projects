@@ -147,18 +147,7 @@ echo "<div class='alert alert-danger'>Unable to add member</div>".mysql_error();
             
         </tr>
 
-        <tr>
-            <td>Balance</td>
-            
-            <td><input type='text' name='s_balance' value='0' class='form-control' /></td>
-            
-        </tr>
-    	 <tr>
-            <td>Overpay</td>
-            <td><input type='text' name='s_overpay' value='0' class='form-control' /></td>
-            
-        </tr>
-      
+        
        
       
         <tr>
@@ -167,7 +156,18 @@ echo "<div class='alert alert-danger'>Unable to add member</div>".mysql_error();
             <td><input type='text' name='s_fine' value='' class='form-control' /></td>
         </tr>
         </tr>
- 
+            <tr>
+          
+            
+            <td><input type='hidden' name='s_balance' value='0' class='form-control' /></td>
+            
+        </tr>
+         <tr>
+      
+            <td><input type='hidden' name='s_overpay' value='0' class='form-control' /></td>
+            
+        </tr>
+      
         <tr>
             <td></td>
             <td>
