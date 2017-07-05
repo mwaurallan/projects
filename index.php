@@ -132,8 +132,8 @@
                         <button class="dropbtn">Reports</button>
                         <div class="dropdown-content">
                           <a href="members_report4.php">Statements</a>
-                          <a href="#">Link 2</a>
-                          <a href="#">Link 3</a>
+                          <a href="members_report.php">Shares</a>
+                          <a href="members_report.php">Members</a>
                         </div>
                     </ul>
                 </div>

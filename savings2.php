@@ -81,18 +81,20 @@ echo "<div class='alert alert-danger'>Unable to add member.</div>";
 
         <tr>
             <td>Date</td>
-            <td><input type='date' name='s_date' value='' class='form-control' /></td>
+            <td><input type='date' name='s_date' value='2015-10-10' class='form-control' /></td>
+
+
         </tr>
            <tr>
             <td>Amount</td>
-            <td><input type='text' name='s_amount' value='' class='form-control' /></td>
+            <td><input type='text' name='s_amount' value='700' class='form-control' /></td>
             <td>Balance</td>
-            <td><input type='text' name='s_balance' value='' class='form-control' /></td>
+            <td><input type='text' name='s_balance' value='0' class='form-control' /></td>
         </tr>
  		
     	 <tr>
             <td>Overpay</td>
-            <td><input type='text' name='s_overpay' value='' class='form-control' /></td>
+            <td><input type='text' name='s_overpay' value='0' class='form-control' /></td>
             <td>text</td>
         </tr>
         s_t_id

@@ -22,7 +22,10 @@ if(isset($_POST['send'])){
 
 //$name2="PATSON WANJIRI NDEMI";
 
-$name3=$_POST['m_name'];
+$date1=$_POST['date1'];
+
+
+$date2=$_POST['date2'];
 //echo $name2;
 //include_once("footer.php");
 class PDF extends FPDF
@@ -68,14 +71,14 @@ $pdf->SetFont('Times','B',12);
 
 $dar=" Members Satement";
 $namel="Member Name";
-$named=$_POST['m_name'];
-$name3=$_POST['m_name'];
+//$named=$_POST['m_name'];
+//$name3=$_POST['m_name'];
 $pdf->Cell(40,10,"$dar");
 
 $pdf->Ln();
 
 $pdf->Cell(55,10,"$namel",'B','L');
-$pdf->Cell(55,10,"$named",'B','L');
+//$pdf->Cell(55,10,"$named",'B','L');
 
 $pdf->Ln();
 $pdf->Cell(10,10,'NO',1);
@@ -90,13 +93,16 @@ $pdf->Ln();
 //$sql=$insertdata->selects();
 //$sql=mysql_query("SELECT * FROM mem_savings WHERE m_name='PATSON WANJIRI NDEMI'");
 
-$sql=mysql_query("SELECT * FROM mem_savings WHERE m_name='".$name3."' ");
-//ORDER BY m_name ASC
+$sql=mysql_query("SELECT * FROM mem_savings WHERE DATE(s_date) BETWEEN '$date1' AND '$date2' ");
+if($sql){
+
+
+//SELECT users.* FROM users WHERE DATE(created_at) BETWEEN '2011-12-01' AND '2011-12-06'
 //'".$name3."' 
-$qc2=mysql_query("SELECT SUM(s_amount) as amt FROM mem_savings WHERE m_name='".$name3."'");
-$rm2=mysql_fetch_array($qc2);
-$TotalAmt=$rm2['amt'];
-$TotalAmt2=number_format($TotalAmt,2);
+//$qc2=mysql_query("SELECT SUM(s_amount) as amt FROM mem_savings WHERE m_name='".$name3."'");
+//$rm2=mysql_fetch_array($qc2);
+//$TotalAmt=$rm2['amt'];
+//$TotalAmt2=number_format($TotalAmt,2);
 $dar2="Total";
 //$query=mysql_query("SELECT * FROM members_reg WHERE BlockNo='".$block."' ORDER BY Connection_No ASC");
  //WHERE Connection_No='".$conn."' ORDER BY Arr_ID DESC
@@ -134,10 +140,14 @@ $pdf->Ln();
 $pdf->Cell(55,6,"",0,'C');
 $pdf->SetFont('Times','',18);
 $pdf->Cell(28,6,"$dar2",0,'C');
-$pdf->Cell(55,6,"$TotalAmt2",1);
+//$pdf->Cell(55,6,"$TotalAmt2",1);
 
 //$pdf->Cell(170,6,"$total2",0,1,'R');
 //$this->Cell(30,8,'KAWA SELF HELP GROUP',0,1,'C');
+}else{
+
+	echo mysql_error();
+}
 
 $pdf->Output();
 }
@@ -163,27 +173,21 @@ $pdf->Output();
 <form method="POST" action="">
 <table  align='centre' class='table table-hover table-responsive table-bordered'>
 <tr>
-					<td>Select Member</td>
-					</tr>
-					
+				<td>Select date Range To View</td>
+</tr>
+<tr>
+	<td><input type='date' name='date1' class='form-control'/></td>
+
+	<td><input type='date' name='date2' class='form-control'/></td>
+
+</tr>
+<tr>
 
 
-<tr><td><select name="m_name" class='form-control'><option val1ue='ALL'>ALL</option>
-<?php
-//$query=mysql_query("SELECT * FROM blocks ORDER BY Block_ID ASC")or die(mysql_error());
-$sql4=mysql_query("SELECT * FROM members ORDER BY m_name ASC")or die(mysql_error());
-while($rw=mysql_fetch_array($sql4)){
-echo "<option value='".$rw['m_name']."'>".$rw['m_name']."</option>";
+<td><input type='submit' name='send' value='Print'></td>
+</tr>
 
-}
-echo "</select></td></tr>";
-echo "<tr>";
-
-echo "<td><br/><input type='submit' name='send' value='Print'></td>
-";
-?>
-
-</tr></table>
+</table>
 
 </form></fieldset>
 </body></html>
