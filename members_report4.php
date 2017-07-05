@@ -47,8 +47,8 @@ function Header()
 	$this->Cell(30,8,'KAWA SELF HELP GROUP',0,1,'C');
 	// Line break
 	$this->SetFont('Arial','B',9);
-	$this->Cell(180,6,'P.O. BOX 1478-00217, LIMURU .TEL:020 2699768',0,1,'C');
-	$this->Cell(180,6,'Email:bibirioni@yahoo.com',0,1,'C');
+	$this->Cell(180,6,'P.O. BOX 1478-00217, KAWANGWARE .TEL:020 2699768',0,1,'C');
+	$this->Cell(180,6,'Email:kawa@yahoo.com',0,1,'C');
 	$this->Cell(180,6,'Name',0,1,'C');
 
 	$this->Ln();
@@ -70,7 +70,7 @@ function Footer()
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Times','B',12);
+//$pdf->SetFont('Times','B',12);
 
 $dar=" Members Satement";
 $namel="Member Name";
@@ -78,10 +78,13 @@ $named=$_POST['m_name'];
 $name3=$_POST['m_name'];
 $name8=$tel;
 $dar15=" Telephone";
+$pdf->SetFont('Times','B',20);
+$pdf->SetTextColor(91,137,42);
+$pdf->Cell(70,10,"");
 $pdf->Cell(40,10,"$dar");
 
 $pdf->Ln();
-
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(55,10,"$namel",'B','L');
 $pdf->Cell(55,10,"$named",'B','L');
 $pdf->Cell(55,10,"$dar15",'B','L');
