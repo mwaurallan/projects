@@ -127,8 +127,13 @@
                 </div>
                 <div class="top-right links">
                     <a href="home.php">Members</a>
+<<<<<<< HEAD
                     <a href="savings.php">Savings</a>
                     <a href="bank_savings.php">Bankings</a>
+=======
+                    <a href="banks.php">Banks</a>
+                    <a href="deposits.php">Deposits</a>
+>>>>>>> d02ca78a36fe7ed26fd2742cd45cb402fd7da3e3
                     <ul class="nav navbar-nav navbar-right dropdown">
                         <button class="dropbtn">Reports</button>
                         <div class="dropdown-content">
