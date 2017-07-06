@@ -128,6 +128,7 @@
                 <div class="top-right links">
                     <a href="home.php">Members</a>
                     <a href="savings.php">Savings</a>
+                    <a href="bank_savings.php">Bankings</a>
                     <ul class="nav navbar-nav navbar-right dropdown">
                         <button class="dropbtn">Reports</button>
                         <div class="dropdown-content">

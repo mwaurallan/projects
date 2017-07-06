@@ -33,6 +33,7 @@ $title = 'Kawa Self Help Group';
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="members.php">Member</a></li>
+        <li><a href="bank_savings.php">Bankings</a></li>
         <li><a href="#">Savings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right dropdown">
