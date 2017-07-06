@@ -44,6 +44,21 @@ $d_bank_id=trim($_POST['d_bank_id']);
 $sql=mysql_query("insert into  deposits(d_date,d_amount,d_bank_id) 
         values('$d_date','$d_amount','$d_bank_id')");
 
+$sql5=mysql_query("SELECT * from t_fund ");
+
+$row6=mysql_fetch_assoc($sql5);
+
+    $fund=$row6['t_amount'];
+
+    $fund2=$fund-$d_amount;
+    
+    $sql7=mysql_query("UPDATE t_fund SET t_amount='$fund2' ");
+    if($sql7){
+
+        echo "update success";
+    }else{
+        mysql_error();
+    }
     //$sql = "UPDATE MyGuests SET lastname='Doe' WHERE i$amntfnd=2";
 
 //$sql=$insertdata->insert($fname,$email,$contact,$gender,$education,$adrss);
